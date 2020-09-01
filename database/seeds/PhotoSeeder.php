@@ -21,6 +21,7 @@ class PhotoSeeder extends Seeder
 
         // Get Images mock
         $images = collect( Storage::disk('mock')->files() );
+        
         $path_mock_images = Storage::disk('mock')->getAdapter()->getPathPrefix();
         $imgPerProduct = 3;
         $images = $images->chunk($imgPerProduct);

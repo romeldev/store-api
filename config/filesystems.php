@@ -50,7 +50,7 @@ return [
 
         'mock' => [
             'driver' => 'local',
-            'root' => 'F:\_imagenes\mock users\products',
+            'root' => public_path('mock/products'),
         ],
 
         'public' => [
