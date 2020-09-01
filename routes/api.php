@@ -23,3 +23,6 @@ Route::resource('/categories', 'CategoryController');
 Route::resource('/tags', 'TagController');
 Route::resource('/products', 'ProductController');
 Route::get('/products/{product_id}/photos', 'ProductController@photos');
+
+
+Route::get('/catalog', 'CatalogController@index');

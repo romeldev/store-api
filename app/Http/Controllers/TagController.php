@@ -12,9 +12,9 @@ class TagController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Tag::all();
+        return Tag::search($request->search)->paginate(5);
     }
 
     /**

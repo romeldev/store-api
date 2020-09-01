@@ -8,6 +8,14 @@ class Product extends Model
 {
     protected $fillable = [ 'name', 'descrip', 'price', 'price_ref', 'category_id' ];
 
+    public function scopeSearch($query, $search )
+    {
+        if( trim($search)!==''){
+            $query->where('name', 'like', "%$search%");
+        }
+        return $query;
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -27,7 +35,7 @@ class Product extends Model
     public function getDiscountAttribute()
     {
         if( $this->price_ref !== null){
-            return ($this->price_ref/$this->price)*100;
+            return ($this->price/$this->price_ref)*100;
         }   
         return null;
     }

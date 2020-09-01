@@ -8,7 +8,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Product::class, function (Faker $faker) {
     $price = rand(10, 1000);
-    $price_ref = rand(0,1)? (rand(1, 99)/100 ) * $price : null;
+    $price_ref = rand(0,1)? $price+((rand(1, 99)/100 ))*$price : null;
 
     return [
         'name' => $faker->words(3, true),

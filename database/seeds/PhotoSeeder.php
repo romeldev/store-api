@@ -28,7 +28,6 @@ class PhotoSeeder extends Seeder
 
         $products = Product::all();
         
-        
         $rows = [];
         foreach($products as $key => $product)
         {
