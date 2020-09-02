@@ -1,21 +1,29 @@
 {
-    "private": true,
-    "scripts": {
-        "dev": "npm run development",
-        "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "watch": "npm run development -- --watch",
-        "watch-poll": "npm run watch -- --watch-poll",
-        "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --disable-host-check --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "prod": "npm run production",
-        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
-    },
-    "devDependencies": {
-        "axios": "^0.19",
-        "cross-env": "^7.0",
-        "laravel-mix": "^5.0.1",
-        "lodash": "^4.17.19",
-        "resolve-url-loader": "^3.1.0",
-        "sass": "^1.15.2",
-        "sass-loader": "^8.0.0"
-    }
+  "name": "store",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "lint": "npm run lint:js"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome": "^1.1.8",
+    "@fortawesome/fontawesome-free": "^5.14.0",
+    "@fortawesome/fontawesome-free-brands": "^5.0.13",
+    "@fortawesome/fontawesome-free-solid": "^5.0.13",
+    "@fortawesome/fontawesome-svg-core": "^1.2.30",
+    "@fortawesome/free-solid-svg-icons": "^5.14.0",
+    "@fortawesome/vue-fontawesome": "^0.1.10",
+    "@nuxtjs/axios": "^5.12.0",
+    "@nuxtjs/bulma": "^1.3.0",
+    "laravel-vue-pagination": "^2.3.1",
+    "nuxt": "^2.14.0",
+    "nuxt-fontawesome": "^0.4.0",
+    "vform": "^1.0.1"
+  },
+  "devDependencies": {}
 }

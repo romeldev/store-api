@@ -26,3 +26,4 @@ Route::get('/products/{product_id}/photos', 'ProductController@photos');
 
 
 Route::get('/catalog', 'CatalogController@index');
+Route::get('/catalog/{product}', 'CatalogController@show');

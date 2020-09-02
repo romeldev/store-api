@@ -31,6 +31,17 @@ class Product extends Model
         return $this->hasMany(Photo::class);
     }
 
+    public function getImageAttribute()
+    {
+        $photos = $this->photos;
+        if( $photos->count()) {
+
+            return url($photos->first()->path);
+        }
+
+        return 'NO_IMAGE.jpg';
+    }
+
 
     public function getDiscountAttribute()
     {
