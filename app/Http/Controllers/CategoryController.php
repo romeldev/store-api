@@ -14,7 +14,7 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        return Category::search($request->search)->paginate(5);
+        return Category::search($request->search)->orderBy('id', 'desc')->paginate(5);
     }
 
     /**

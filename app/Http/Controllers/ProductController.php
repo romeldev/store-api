@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Model\Product;
+use App\Model\Photo;
 use Illuminate\Http\Request;
 use App\Http\Resources\ProductResource;
+use Illuminate\Support\Facades\Storage;
+use DB;
 
 class ProductController extends Controller
 {
@@ -15,7 +18,8 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $items = Product::search($request->search)->paginate(5);
+        $items = Product::search($request->search)
+        ->orderBy('id', 'desc')->paginate(8);
         return ProductResource::collection($items);
     }
 
@@ -40,10 +44,28 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required',
             'price' => 'required',
-            'category_id' => 'required',
+            'category.id' => 'required',
         ]);
 
-        return Product::create($request->all());
+        DB::beginTransaction();
+        try {
+            $product = new Product;
+            $product->name = $request->name;
+            $product->price = $request->price;
+            $product->price_ref = $request->price_ref;
+            $product->descrip = $request->descrip;
+            $product->category_id = $request->category['id'];
+            $product->save();
+            $product->saveTags( $request->tags );
+            $product->savePhotos( $request->new_photos );
+            DB::commit();
+
+            return response()->json( new ProductResource( $product->refresh() ), 200);
+            // all good
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response($e->getMessage(), 500);
+        }
     }
 
     /**
@@ -80,10 +102,19 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required',
             'price' => 'required',
-            'category_id' => 'required',
+            'category.id' => 'required',
         ]);
+        
+        $product->name = $request->name;
+        $product->price = $request->price;
+        $product->price_ref = $request->price_ref;
+        $product->descrip = $request->descrip;
+        $product->category_id = $request->category['id'];
+        $product->save();
+        $product->saveTags($request->tags);
+        $product->savePhotos($request->new_photos, $request->photos );
 
-        return $product->update($request->all());
+        return response()->json( new ProductResource( $product->refresh() ), 200);
     }
 
     /**
@@ -94,7 +125,18 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        return $product->delete();
+        DB::beginTransaction();
+        try {
+            $product->deleteImages();
+            $product->delete();
+            DB::commit();
+            return response(true, 200);
+            // all good
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response($e->getMessage(), 500);
+            // something went wrong
+        }
     }
 
     public function photos(Product $product)

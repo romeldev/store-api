@@ -14,7 +14,8 @@ class TagController extends Controller
      */
     public function index(Request $request)
     {
-        return Tag::search($request->search)->paginate(5);
+        return Tag::search($request->search)
+        ->orderBy('id', 'desc')->paginate(5);
     }
 
     /**
