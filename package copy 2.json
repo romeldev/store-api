@@ -1,0 +1,38 @@
+{
+    "name": "store",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+        "dev": "nuxt",
+        "build": "nuxt build",
+        "start": "nuxt start",
+        "generate": "nuxt generate",
+        "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
+        "lint": "npm run lint:js"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome": "^1.1.8",
+        "@fortawesome/fontawesome-free": "^5.14.0",
+        "@fortawesome/fontawesome-free-brands": "^5.0.13",
+        "@fortawesome/fontawesome-free-solid": "^5.0.13",
+        "@fortawesome/fontawesome-svg-core": "^1.2.30",
+        "@fortawesome/free-solid-svg-icons": "^5.14.0",
+        "@fortawesome/vue-fontawesome": "^0.1.10",
+        "@nuxtjs/axios": "^5.12.0",
+        "@nuxtjs/bulma": "^1.3.0",
+        "laravel-vue-pagination": "^2.3.1",
+        "nuxt": "^2.14.0",
+        "nuxt-fontawesome": "^0.4.0",
+        "vform": "^1.0.1"
+    },
+    "devDependencies": {
+        "bootstrap": "^4.0.0",
+        "jquery": "^3.2",
+        "popper.js": "^1.12",
+        "resolve-url-loader": "^2.3.1",
+        "sass": "^1.20.1",
+        "sass-loader": "^8.0.0",
+        "vue": "^2.5.17",
+        "vue-template-compiler": "^2.6.10"
+    }
+}
